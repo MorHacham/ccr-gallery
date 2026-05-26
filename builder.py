@@ -97,7 +97,7 @@ function researchUrl(display,query){
   const isHost=display!==query;
   const stype=isHost?'host':'tld';
   const sq=isHost?display:query;
-  return`${INT}/admin_geinternalpage/analytics/snapshots_jobs?req_rpt_period=last30days&job_status=all&no_ads=all&scan_type=-1&code_type=-1&is_manual=&location=0&emulation_category=-1&location_via=all&malware_type=0&is_sound=&is_fake=&event_type=-1&is_screenshot=&security_rule=&security_rule_extra_id=0&preview=landing&search_type%5B%5D=${stype}&search_q%5B%5D=${encodeURIComponent(sq)}&group=landing_title&rows_limit=500&rows_order=&output_fields%5B%5D=in&output_fields%5B%5D=lu&output_fields%5B%5D=lh&submit=Search`;
+  return`${INT}/admin_geinternalpage/analytics/snapshots_jobs?req_rpt_period=last30days&job_status=all&no_ads=all&scan_type=-1&code_type=-1&is_manual=&location=0&emulation_category=-1&location_via=all&malware_type=0&is_sound=&is_fake=&event_type=-1&is_screenshot=&security_rule=&security_rule_extra_id=0&preview=landing&search_type%5B%5D=${stype}&search_q%5B%5D=${encodeURIComponent(sq)}&group=&rows_limit=500&rows_order=&output_fields%5B%5D=in&output_fields%5B%5D=lu&output_fields%5B%5D=lh&submit=Search`;
 }
 
 // Lightbox
