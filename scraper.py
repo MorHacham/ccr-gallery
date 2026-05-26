@@ -41,9 +41,18 @@ def _parse(html):
         m = re.search(r"landingthumb_([0-9a-f]{32})\.jpg", img["src"])
         if not m:
             continue
+
+        def cell(i):
+            return cells[i].get_text(strip=True) if len(cells) > i else ""
+
         items.append({
             "thumb": img["src"],
-            "lpHost": cells[10].get_text(strip=True) if len(cells) > 10 else "",
+            "location": cell(1),
+            "emulation": cell(2),
+            "time": cell(5),
+            "incident": cell(8),   # extra output: in
+            "lpUrl": cell(9),      # extra output: lu
+            "lpHost": cell(10),    # extra output: lh
             "jobHref": links[0]["href"] if links else "",
         })
     return items[:MAX_THUMBS]

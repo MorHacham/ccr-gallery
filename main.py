@@ -57,7 +57,7 @@ def parse_csv(path):
 
         reader = csv.DictReader(f, dialect=dialect)
         for raw in reader:
-            r = {k.lower().strip(): (v or "").strip() for k, v in raw.items()}
+            r = {k.lower().strip(): (v or "").strip() for k, v in raw.items() if k is not None}
 
             display = r.get("display") or r.get("host") or r.get("domain") or ""
             if not display:
@@ -72,6 +72,13 @@ def parse_csv(path):
                 "query": query,
                 "vendor": vendor,
                 "should_bl": should_bl,
+                "tld": r.get("tld", query),
+                "rdap_creation_date": r.get("rdap_creation_date", ""),
+                "rdap_creation_days": r.get("rdap_creation_days", ""),
+                "status": r.get("status", ""),
+                "track_ads": r.get("track_ads", ""),
+                "track_lp": r.get("track_lp", ""),
+                "is_malicious": r.get("is_malicious", "").lower() in ("true", "1", "yes"),
             })
     return rows
 
