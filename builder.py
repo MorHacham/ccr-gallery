@@ -89,6 +89,7 @@ const ROWS=__DATA__;
 const INT='https://internal.geoedge.com';
 
 function thumbUrl(h){return`https://geoedge-analytics.s3.amazonaws.com/screenshots/${h.slice(0,2)}/${h.slice(2,4)}/landingthumb_${h}.jpg`}
+function fullUrl(h){return`https://geoedge-analytics.s3.amazonaws.com/screenshots/${h.slice(0,2)}/${h.slice(2,4)}/landing_${h}.jpg`}
 function jobUrl(id){return id?`${INT}/admin_geinternalpage/analytics/snapshots_job/${id}`:'#'}
 function adsUrl(id){return id?`${INT}/admin_geinternalpage/analytics/snapshots_ads?req_rpt_period=all&search_type=ji&search_str=${id}`:'#'}
 function researchUrl(display,query){
@@ -135,12 +136,12 @@ ROWS.forEach(([display,query,vendor,bl,tld,rdap_date,rdap_days,status,track_ads,
   const metaHtml=metaParts.length?`<div class="meta">${metaParts.join('')}</div>`:'';
 
   const thumbHtml=thumbs.length?thumbs.map(([h,jid,lp,loc,emul,time,lpUrl,incident])=>{
-    const ju=jobUrl(jid),au=adsUrl(jid),src=thumbUrl(h);
+    const ju=jobUrl(jid),au=adsUrl(jid),src=thumbUrl(h),full=fullUrl(h);
     const metaStr=[loc,emul,time].filter(Boolean).join(' · ');
     const incidentLine=incident?`<span class="ti" title="${incident}">${incident}</span>`:'';
     const lpLine=lpUrl?`<span class="ti" title="${lpUrl}"><a href="${lpUrl}" target="_blank" style="color:#7af;text-decoration:none">${lpUrl.length>30?lpUrl.slice(0,30)+'…':lpUrl}</a></span>`:'';
     return`<div class="tc">
-      <img loading="lazy" src="${src}" alt="${lp}" title="${metaStr}" onclick="openLb('${src}','${(metaStr+' | '+lp).replace(/'/g,'&apos;')}')">
+      <img loading="lazy" src="${src}" alt="${lp}" title="${metaStr}" onclick="openLb('${full}','${(metaStr+' | '+lp).replace(/'/g,'&apos;')}')">
       <div class="tm">
         <span class="th" title="${lp}">${lp}</span>
         ${incidentLine}${lpLine}
