@@ -45,6 +45,7 @@ h1{font-size:16px;margin-bottom:6px}
 .tm{padding:2px 3px;font-size:8px}
 .th{display:block;color:#9cf;word-break:break-all;font-weight:600;margin-bottom:1px;overflow:hidden;max-height:2em}
 .ti{display:block;color:#777;font-size:7px;margin-bottom:1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.inc{display:block;color:#f44;font-size:8px;font-weight:700;margin-bottom:1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .tl{display:flex;gap:3px;margin-top:1px}
 .tl a{color:#7af;font-size:8px;text-decoration:none}
 .ns{font-size:10px;color:#444;padding:4px 0}
@@ -138,7 +139,7 @@ ROWS.forEach(([display,query,vendor,bl,tld,rdap_date,rdap_days,status,track_ads,
   const thumbHtml=thumbs.length?thumbs.map(([h,jid,lp,loc,emul,time,lpUrl,incident])=>{
     const ju=jobUrl(jid),au=adsUrl(jid),src=thumbUrl(h),full=fullUrl(h);
     const metaStr=[loc,emul,time].filter(Boolean).join(' · ');
-    const incidentLine=incident?`<span class="ti" title="${incident}">${incident}</span>`:'';
+    const incidentLine=incident?`<span class="inc" title="${incident}">${incident}</span>`:'';
     const lpLine=lpUrl?`<span class="ti" title="${lpUrl}"><a href="${lpUrl}" target="_blank" style="color:#7af;text-decoration:none">${lpUrl.length>30?lpUrl.slice(0,30)+'…':lpUrl}</a></span>`:'';
     return`<div class="tc">
       <img loading="lazy" src="${src}" alt="${lp}" title="${metaStr}" onclick="openLb('${full}','${(metaStr+' | '+lp).replace(/'/g,'&apos;')}')">
