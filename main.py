@@ -112,17 +112,10 @@ def main():
 
     cookie = args.cookie or os.environ.get("GEOEDGE_COOKIE", "")
     if not cookie:
-        print(
-            "ERROR: No GeoEdge cookie provided.\n"
-            "  Option 1: set env var  GEOEDGE_COOKIE='sessionid=…'\n"
-            "  Option 2: pass flag    --cookie 'sessionid=…'\n"
-            "\n"
-            "  How to get your cookie:\n"
-            "    1. Open internal.geoedge.com in Chrome while logged in\n"
-            "    2. Press F12 → Application tab → Cookies → internal.geoedge.com\n"
-            "    3. Copy the Name=Value pairs (at minimum 'sessionid')\n",
-            file=sys.stderr,
-        )
+        print("Authenticating with GeoEdge ...")
+        from auth import get_cookie
+        cookie = get_cookie()
+    if not cookie:
         sys.exit(1)
 
     print(f"Loading {args.csv} ...")
