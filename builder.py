@@ -130,7 +130,7 @@ ROWS.forEach(([display,query,vendor,bl,tld,rdap_date,rdap_days,status,track_ads,
 
   // Meta row: domain age + status info
   const metaParts=[];
-  if(rdap_date) metaParts.push(`<span><b>rdap_creation_date</b> ${rdap_date}${rdap_days?' ('+rdap_days+' days)':''}</span>`);
+  if(rdap_date && /\d{4}-\d{2}-\d{2}/.test(rdap_date)) metaParts.push(`<span><b>rdap_creation_date</b> ${rdap_date}${rdap_days?' ('+rdap_days+' days)':''}</span>`);
   if(status) metaParts.push(`<span><b>Status:</b> ${status}</span>`);
   if(track_ads) metaParts.push(`<span><b>Track ads:</b> ${track_ads}</span>`);
   if(track_lp) metaParts.push(`<span><b>Track LP:</b> ${track_lp}</span>`);
